@@ -18,7 +18,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseLazyLoadingProxies()
-    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    .UseSqlServer(Environment.GetEnvironmentVariable("database-connection") ?? builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
